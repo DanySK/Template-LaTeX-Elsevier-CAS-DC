@@ -1,5 +1,5 @@
 plugins {
-  id("org.danilopianini.gradle-latex") version "0.1.0-dev02+f5ee9b5"
+  id("org.danilopianini.gradle-latex") version "0.1.1"
 }
 
 latex {
