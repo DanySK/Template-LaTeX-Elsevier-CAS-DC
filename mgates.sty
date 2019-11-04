@@ -1,0 +1,319 @@
+% mgates.sty
+% Copyright 2006-2010 Mark Gates
+% This document is free; you can redistribute it under terms of the
+% GNU General Public License, version 2 or later.
+
+% packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bm}       % bold symbol
+
+% Greek letters
+\newcommand{\Mu}{M}
+
+% abbreviations
+\newcommand{\dr}{\;dr}
+\newcommand{\dt}{\;dt}
+\newcommand{\du}{\;du}
+\newcommand{\dv}{\;dv}
+\newcommand{\dw}{\;dw}
+\newcommand{\dx}{\;dx}
+\newcommand{\dy}{\;dy}
+\newcommand{\dz}{\;dz}
+
+\newcommand{\dT}{\;d\theta}
+\newcommand{\dO}{\;\mathrm{d}\Omega}
+\newcommand{\dG}{\;\mathrm{d}\Gamma}
+
+\newcommand{\intO}{\int_\Omega}
+\newcommand{\intOe}{\int_{\Omega^e}}
+
+\newcommand{\intG}{\int_\Gamma}
+\newcommand{\intGg}{\int_{\Gamma_g}}
+\newcommand{\intGh}{\int_{\Gamma_h}}
+\newcommand{\intGhe}{\int_{\Gamma_h^e}}
+
+% for d.dd x 10^{e} use d.dd \power{e}
+% this condenses the space around the \times some
+\newcommand{\pwr}[1]{\!\times\! 10^{#1}}
+
+\newcommand{\ph}[1]{\phantom{#1}}
+
+
+% -----
+% bold vectors
+\newcommand{\0 }{\bm{0}}  % zero vector
+
+\newcommand{\ba}{\bm{a}}  % no \aa    no \a
+\newcommand{\bb}{\bm{b}}  % --        no \b
+\newcommand{\cc}{\bm{c}}  %           no \c
+\newcommand{\dd}{\bm{d}}  %           no \d
+\newcommand{\ee}{\bm{e}}  %
+\newcommand{\ff}{\bm{f}}  % no \bf
+\newcommand{\g }{\bm{g}}  % no \gg
+\newcommand{\hh}{\bm{h}}  %
+\newcommand{\ii}{\bm{i}}  %           no \i
+\newcommand{\jj}{\bm{j}}  %           no \j
+\newcommand{\kk}{\bm{k}}  %           no \k
+\newcommand{\bl}{\bm{l}}  % no \ll    no \bl
+\newcommand{\mm}{\bm{k}}  % no \bm
+\newcommand{\nn}{\bm{n}}  %
+\newcommand{\oo}{\bm{o}}  %           no \o
+\newcommand{\pp}{\bm{p}}  %           no \p, \partial
+\newcommand{\qq}{\bm{q}}  %
+\newcommand{\rr}{\bm{r}}  %           no \r
+\newcommand{\s }{\bm{s}}  % no \ss
+\newcommand{\bt}{\bm{t}}  % no \tt    no \t
+\newcommand{\uu}{\bm{u}}  %           no \u
+\newcommand{\vv}{\bm{v}}  %           no \v
+\newcommand{\ww}{\bm{w}}  %
+\newcommand{\xx}{\bm{x}}  %
+\newcommand{\yy}{\bm{y}}  % no \by
+\newcommand{\zz}{\bm{z}}  %
+
+
+% -----
+% bold matrices
+\newcommand{\A }{\bm{A}}
+\newcommand{\B }{\bm{B}}
+\newcommand{\C }{\bm{C}}
+\newcommand{\D }{\bm{D}}
+\newcommand{\E }{\bm{E}}
+\newcommand{\F }{\bm{F}}
+\newcommand{\G }{\bm{G}}
+\newcommand{\HH}{\bm{H}}  % no \H
+\newcommand{\I }{\bm{I}}  % Identity matrix
+\newcommand{\J }{\bm{J}}  % Jacobian matrix
+\newcommand{\K }{\bm{K}}  % stiffness matrix
+\newcommand{\LL}{\bm{L}}  % no \L
+\newcommand{\M }{\bm{M}}  % mass matrix
+\newcommand{\N }{\bm{N}}
+\newcommand{\OO}{\bm{O}}  % no \O
+\newcommand{\PP}{\bm{P}}  % no \P
+\newcommand{\Q }{\bm{Q}}  % QR factorization
+\newcommand{\R }{\bm{R}}
+\newcommand{\bS}{\bm{S}}  % no \S, no \SS
+\newcommand{\T }{\bm{T}}
+\newcommand{\U }{\bm{U}}
+\newcommand{\V }{\bm{V}}
+\newcommand{\W }{\bm{W}}
+\newcommand{\X }{\bm{X}}
+\newcommand{\Y }{\bm{Y}}
+\newcommand{\Z }{\bm{Z}}
+
+% Delta x
+\newcommand{\Dx}{\Delta x}
+\newcommand{\Dy}{\Delta y}
+\newcommand{\Dz}{\Delta z}
+\newcommand{\Dxx}{\Delta \x}
+
+% hats
+\newcommand{\xhat}{\hat x}
+\newcommand{\yhat}{\hat y}
+\newcommand{\zhat}{\hat z}
+\newcommand{\xxhat}{\hat \xx}  % vector
+
+% partials, in fraction notation
+\newcommand{\px}[1]{\tfrac{\p #1}{\p x}}
+\newcommand{\py}[1]{\tfrac{\p #1}{\p y}}
+\newcommand{\pz}[1]{\tfrac{\p #1}{\p z}}
+
+\newcommand{\pxx}[1]{\tfrac{\p^2 #1}{\p x^2}}
+\newcommand{\pyy}[1]{\tfrac{\p^2 #1}{\p y^2}}
+\newcommand{\pzz}[1]{\tfrac{\p^2 #1}{\p z^2}}
+\newcommand{\pxy}[1]{\tfrac{\p^2 #1}{\p x \p y}}
+\newcommand{\pxz}[1]{\tfrac{\p^2 #1}{\p x \p y}}
+\newcommand{\pyz}[1]{\tfrac{\p^2 #1}{\p y \p z}}
+
+% partials, in mechanics subscript notation
+%\newcommand{\px}[1]{#1_{,x}}
+%\newcommand{\py}[1]{#1_{,y}}
+%\newcommand{\pz}[1]{#1_{,z}}
+%
+%\newcommand{\pxx}[1]{#1_{,xx}}
+%\newcommand{\pyy}[1]{#1_{,yy}}
+%\newcommand{\pzz}[1]{#1_{,zz}}
+%\newcommand{\pxy}[1]{#1_{,xy}}
+%\newcommand{\pxz}[1]{#1_{,xy}}
+%\newcommand{\pyz}[1]{#1_{,yz}}
+
+% partials of u, v, w and vector u (as uu)
+\newcommand{\ux}{\px{u}}
+\newcommand{\uy}{\py{u}}
+\newcommand{\uz}{\pz{u}}
+
+\newcommand{\vx}{\px{v}}
+\newcommand{\vy}{\py{v}}
+\newcommand{\vz}{\pz{v}}
+
+\newcommand{\wx}{\px{w}}
+\newcommand{\wy}{\py{w}}
+\newcommand{\wz}{\pz{w}}
+
+\newcommand{\uux}{\px{\uu}}
+\newcommand{\uuy}{\py{\uu}}
+\newcommand{\uuz}{\pz{\uu}}
+
+% delimiters
+\newcommand{\parens   }[1]{\left(       #1 \right)      }
+\newcommand{\bparens  }[1]{\bigl(       #1 \bigr)       }
+\newcommand{\xbparens }[1]{\xbigl(      #1 \xbigr)      }
+\newcommand{\xxbparens}[1]{\xxbigl(     #1 \xxbigr)     }
+
+\newcommand{\brackets }[1]{\left[       #1 \right]      }
+\newcommand{\angles   }[1]{\left\langle #1 \right\rangle}
+\newcommand{\braces   }[1]{\left\{      #1 \right\}     }
+\newcommand{\leftbrace}[2]{\left\{ \begin{array}{#1} #2 \end{array} \right.}
+\newcommand{\abs      }[1]{\left\lvert  #1 \right\rvert }
+\newcommand{\norm     }[1]{\left\lVert  #1 \right\rVert }
+\newcommand{\floor    }[1]{\left\lfloor #1 \right\rfloor}
+\newcommand{\ceil     }[1]{\left\lceil  #1 \right\rceil }
+\newcommand{\eval     }[1]{\left.       #1 \right\rvert }
+\newcommand{\reval    }{\bigr\rvert}
+
+% symbols
+\newcommand{\dsum}{\displaystyle\sum}
+\newcommand{\Dt}{\Delta t}
+\newcommand{\half}{\tfrac{1}{2}}
+\newcommand{\p}{\partial}
+\newcommand{\pfrac}[2]{\dfrac{\partial #1}{\partial #2}}
+\newcommand{\del}{\nabla}
+\newcommand{\grad}{\nabla}
+\newcommand{\divr}{\nabla \cdot}  % divergence, \div is division
+\newcommand{\curl}{\nabla \times}
+\newcommand{\degrees}{\,^{\circ}}
+\newcommand{\emach}{\epsilon_{\text{mach}}}
+
+% types
+\newcommand{\Float}   {\mathbb{F}}
+\newcommand{\Real}    {\mathbb{R}}
+\newcommand{\Complex} {\mathbb{C}}
+\newcommand{\Natural} {\mathbb{N}}
+\newcommand{\Rational}{\mathbb{Q}}
+\newcommand{\Integer} {\mathbb{Z}}
+\newcommand{\Imag}    {\mathbb{I}}
+\newcommand{\Poly}    {\mathbb{P}}
+\newcommand{\re}[1]{\text{Re}(#1)}
+\newcommand{\im}[1]{\text{Im}(#1)}
+
+% operators
+\newcommand{\cross}{\times}
+\newcommand{\by}{\times}
+\newcommand{\union}{\cup}
+\newcommand{\inter}{\cap}
+\newcommand{\compose}{\circ}
+\newcommand{\widebar}{\overline}
+\newcommand{\close}{\overline}
+\renewcommand{\implies}{\Rightarrow}  % a bit shorter
+\newcommand{\embed}{\hookrightarrow}
+
+% functions to not italicize
+\newcommand{\FFT}{\text{FFT}}
+\newcommand{\IFFT}{\text{IFFT}}
+\newcommand{\cond}{\text{cond}}
+\newcommand{\range}{\text{range}}
+\newcommand{\rank}{\text{rank}}
+\newcommand{\sech}{\text{sech}}
+\newcommand{\tif}{\text{ if }}
+\newcommand{\for}{\text{ for }}
+\newcommand{\tspan}{\text{span}}  % \span interferes with \begin{align} ... \end{align}
+
+% matrices
+\newcommand{\mat}[1]{\begin{bmatrix} #1 \end{bmatrix}}   % regular [matrix]
+\newcommand{\pmat}[1]{\begin{pmatrix} #1 \end{pmatrix}}  % parens  (matrix)
+\newcommand{\qmat}[1]{\begin{Bmatrix} #1 \end{Bmatrix}}  % curly   {matrix}
+\newcommand{\smat}[1]{\left[ \begin{smallmatrix} #1 \end{smallmatrix} \right]}   % small [matrix]
+\newcommand{\tuple}[1]{\left\langle \begin{matrix} #1 \end{matrix} \right\rangle}  % tuple <matrix>
+
+% references to figures, etc., like eqref
+\newcommand{\aref}[1]{Algorithm \ref{#1}}
+\newcommand{\cref}[1]{Chapter   \ref{#1}}
+\newcommand{\fref}[1]{Figure    \ref{#1}}
+\newcommand{\sref}[1]{Section   \ref{#1}}
+\newcommand{\tref}[1]{Table     \ref{#1}}
+
+\newcommand{\Aref}[1]{Algorithm \ref{#1}}
+\newcommand{\Cref}[1]{Chapter   \ref{#1}}
+\newcommand{\Fref}[1]{Figure    \ref{#1}}
+\newcommand{\Sref}[1]{Section   \ref{#1}}
+\newcommand{\Tref}[1]{Table     \ref{#1}}
+
+% -----
+% font sizes
+\newcommand{\xxxxlarge}{\Huge}         % 25    25
+\newcommand{\xxxlarge }{\huge}         % 20    25
+\newcommand{\xxlarge  }{\LARGE}        % 17    20
+\newcommand{\xlarge   }{\Large}        % 14    17
+% \large                               % 12    14
+\newcommand{\normal   }{\normalsize}   % 10pt  12pt
+% \small                               %  9    11
+\newcommand{\xsmall   }{\footnotesize} %  8    10
+\newcommand{\xxsmall  }{\scriptsize}   %  7     8
+\newcommand{\xxxsmall }{\tiny}         %  5     6
+
+% size of parens, braces, etc.
+% \left
+% \bigl
+\newcommand{\xbigl  }{\Bigl}
+\newcommand{\xxbigl }{\biggl}
+\newcommand{\xxxbigl}{\Biggl}
+
+% \right
+% \bigr
+\newcommand{\xbigr  }{\Bigr}
+\newcommand{\xxbigr }{\biggr}
+\newcommand{\xxxbigr}{\Biggr}
+
+% from http://www.ucalgary.ca/~rzach/logblog/2007/02/latex-trick-rising-diagonal-dots.html
+\makeatletter
+\def\iddots{\mathinner{\mkern1mu\raise\p@
+\vbox{\kern7\p@\hbox{.}}\mkern2mu
+\raise4\p@\hbox{.}\mkern2mu\raise7\p@\hbox{.}\mkern1mu}}
+\makeatother
+
+% -----
+% algorithm packages
+\usepackage[plain]{algorithm}
+\usepackage{algorithmic}
+% indent each level 2em
+\algsetup{indent=2em}
+% change "require" to "input"
+\renewcommand{\algorithmicrequire}{\quad \textbf{input:}}
+% change "ensure" to "output"
+\renewcommand{\algorithmicensure}{\quad \textbf{output:}}
+% no "do" after "for i=1, ..., n"
+\renewcommand{\algorithmicdo}{}
+% change "end if", "end for", "end while" ==> "end"
+\renewcommand{\algorithmicendif}   {\algorithmicend}
+\renewcommand{\algorithmicendfor}  {\algorithmicend}
+\renewcommand{\algorithmicendwhile}{\algorithmicend}
+% make comments blue, starting with //
+%\definecolor{med_blue}{rgb}{0.2, 0.2, 0.8}
+\renewcommand{\algorithmiccomment}[1]{\qquad {\color{med_blue}/\!/ #1}}
+
+% myalgorithmic adds rule lines above and below the algorithm,
+% and sets the algorithm on a 6in wide page, which can then be centered
+\newenvironment{myalgorithmic}
+{
+	\begin{minipage}{6.25in}
+	\rule{\textwidth}{0.5pt} \vspace{-1.5em}
+	\begin{algorithmic}
+}
+{
+	\end{algorithmic}
+	\vspace{-0.75em} \rule{\textwidth}{0.5pt}
+	\end{minipage}
+	\vspace{-0.5em} % before caption
+}
+
+% -----
+% graphics images and colors
+\usepackage{graphicx}
+\usepackage{color}
+
+% define some colors
+\definecolor{med_red}  {rgb}{0.8, 0.2, 0.2}
+\definecolor{med_green}{rgb}{0.2, 0.8, 0.2}
+\definecolor{med_blue} {rgb}{0.2, 0.2, 0.8}
+\definecolor{light_red}{rgb}{1.0, 0.7, 0.7}
+\definecolor{clover}   {rgb}{0,   0.5, 0  }

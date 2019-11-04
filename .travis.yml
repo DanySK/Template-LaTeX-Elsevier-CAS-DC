@@ -1,0 +1,61 @@
+official-repo: &official-repo
+  DanySK/Template-LaTeX-CI
+language: java
+addons:
+  apt:
+    update: true
+    packages:
+      # LaTeX decent font processor
+      - cm-super
+      # For Minted
+      - python-pygments
+      # LaTeX
+      - texlive-base
+      - texlive-extra-utils
+      - texlive-generic-recommended
+      - texlive-latex-extra
+      - texlive-latex-recommended
+      - texlive-fonts-recommended
+      - texlive-science
+      # Debug
+      - tree
+      # For git latexdiff
+      - latexdiff
+      # Image processing
+      - inkscape
+env:
+  global:
+    - TERM=dumb
+    - GRAVIS="https://raw.githubusercontent.com/DanySK/Gravis-CI/master/"
+install: true
+script: ./gradlew buildLatex
+before_deploy:
+  - git config --local user.name "Danilo Pianini"
+  - git config --local user.email "danilo.pianini@unibo.it"
+  - if [[ $(git describe) == *"-"* ]]; then git tag $(git describe) || :; fi
+before_cache:
+  - curl "${GRAVIS}.clean_gradle_cache.sh" --output .clean_gradle_cache.sh
+  - bash .clean_gradle_cache.sh
+cache:
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
+deploy:
+  - provider: releases
+    api_key:
+      secure: NMxb33l3KDAVQ+2cTbE1HQA9J54ljry4Q6+yZiFPYAtPgAihYbf29q+o/4bfNh1YbatDFf9lbPwWCT7JmFPa/7IbvZjFr6UOHr+nSybOS96IrbujTfF7yvbzed4SfwgiZX1ufLuluNcb2TU1dmsBHthVRCw+eCnKZN9B5DWvGz2g3PKLHAp5RSWsu/BsE+TbIQSiwdG7p/v/Ag5P8BIQlPviCPEllIyzMcMWrdctYRMJuoRro3U+paq3C3Qw8RWzb7cDVKkyIThsh0iTLMNkU4gSQZTIcaS8zG+e5yo/uFBycGXfsh4KYdGkTNdSif17Hi4jK8PxgjHzQUbw9dhSFqzhu6D+2bnzdcFKd3b8gtgFpf5r8JrTBwDx4B01YaaGdM90uEOI3mkgTTh2ycDM2zYkk3od9nEsRS9tlpUPcK0cNl++oPMHIueM/RonRNo8kPI70AMKShN6wg+IJjdHZimeAaMysQg4Scqolb1Wh/cd+yqu2H5l+h90pRt6qI0+0wqGZvQ950UBDTjhSuo+wSkvYyc/ZTrf50kdWBfn5N8wayDDnMA6qgFhgr6pHbFJY3arv4FTOPTvKjGQfrhFpIwHYuaVCTzrSfTTDCTElc2vVlDePbq4f4kfqvmN/SMTmHCSIdjSMFjB9ft5Mptd54C8qz90Zi3NhwNzUfxDZfs=
+    file_glob: true
+    file: "*.pdf"
+    skip_cleanup: true
+    on:
+      repo: *official-repo
+      tags: true
+  - provider: releases
+    api_key:
+      secure: NMxb33l3KDAVQ+2cTbE1HQA9J54ljry4Q6+yZiFPYAtPgAihYbf29q+o/4bfNh1YbatDFf9lbPwWCT7JmFPa/7IbvZjFr6UOHr+nSybOS96IrbujTfF7yvbzed4SfwgiZX1ufLuluNcb2TU1dmsBHthVRCw+eCnKZN9B5DWvGz2g3PKLHAp5RSWsu/BsE+TbIQSiwdG7p/v/Ag5P8BIQlPviCPEllIyzMcMWrdctYRMJuoRro3U+paq3C3Qw8RWzb7cDVKkyIThsh0iTLMNkU4gSQZTIcaS8zG+e5yo/uFBycGXfsh4KYdGkTNdSif17Hi4jK8PxgjHzQUbw9dhSFqzhu6D+2bnzdcFKd3b8gtgFpf5r8JrTBwDx4B01YaaGdM90uEOI3mkgTTh2ycDM2zYkk3od9nEsRS9tlpUPcK0cNl++oPMHIueM/RonRNo8kPI70AMKShN6wg+IJjdHZimeAaMysQg4Scqolb1Wh/cd+yqu2H5l+h90pRt6qI0+0wqGZvQ950UBDTjhSuo+wSkvYyc/ZTrf50kdWBfn5N8wayDDnMA6qgFhgr6pHbFJY3arv4FTOPTvKjGQfrhFpIwHYuaVCTzrSfTTDCTElc2vVlDePbq4f4kfqvmN/SMTmHCSIdjSMFjB9ft5Mptd54C8qz90Zi3NhwNzUfxDZfs=
+    file_glob: true
+    file: "*.pdf"
+    skip_cleanup: true
+    on:
+      repo: *official-repo
+      tags: false

@@ -1,0 +1,36 @@
+% Import packages that might conflict with other stylesheets
+% (e.g., thesis or from a journal).
+% Set page size to letter with 1" margins.
+
+% packages
+\usepackage{mgates}
+
+% -----
+% set captions to sans-serif, bold label, and indent margin some
+\usepackage[font=sf,labelfont=bf,margin=2em]{caption}
+
+% -----
+% notes in red or blue
+\newcommand{\todo}[1]{\emph{\textcolor{light_red}{to do: #1}}}
+\newcommand{\comment}[1]{\fbox{\parbox{6in}{\emph{\textcolor{med_blue}{NOTE: #1}}}}}
+
+% -----
+% set 1" margins on 8.5" x 11" paper
+% top left is measured from 1", 1"
+\topmargin       0in
+\oddsidemargin   0in
+\evensidemargin  0in
+\headheight      0in
+\headsep         0in
+\topskip         0in
+\textheight      9in
+\textwidth       6.5in
+
+% set PDF size correctly
+% unnecesary now?
+%\pdfpagewidth  = \paperwidth 
+%\pdfpageheight = \paperheight
+
+% HTML-like: skip lines, don't indent
+%\setlength{\parindent}{0in}
+%\setlength{\parskip}{1em}
