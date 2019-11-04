@@ -1,13 +1,12 @@
-# LaTeX template repository with continuous integration  
+# LaTeX template repository with continuous integration for Elsevier journals
 
 [![Build Status](https://travis-ci.org/DanySK/Template-LaTeX-CI.svg?branch=master)](https://travis-ci.org/DanySK/Template-LaTeX-CI)
 
-This repository is meant to be used as template for quickly starting LaTeX projects,
-having them built on a continuous integrator, and having them quickly deployed in GitHub releases.
+This repository is meant to be used as template for quickly starting LaTeX papers to be submitted to Elsevier Journals.
+All the code from the template is subject to the license of the aforementioned template.
+All the build system code is released under the Apache License 2.0.
 
 The build system is based on Gradle, using [the latex-gradle plugin](https://github.com/DanySK/gradle-latex).
-
-The file being built is a LaTeX quick reference by [Mark Gates](http://www.icl.utk.edu/~mgates3/), kudos to him.
 
 ## Using the project
 

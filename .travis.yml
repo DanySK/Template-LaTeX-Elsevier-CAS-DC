@@ -30,6 +30,7 @@ env:
 install: true
 script: ./gradlew buildLatex
 before_deploy:
+  - cp doc/elsdoc-cas.pdf .
   - git config --local user.name "Danilo Pianini"
   - git config --local user.email "danilo.pianini@unibo.it"
   - if [[ $(git describe) == *"-"* ]]; then git tag $(git describe) || :; fi

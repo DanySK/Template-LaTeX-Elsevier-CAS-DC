@@ -10,3 +10,5 @@ latex.pdf
 .ide/
 .gradle/
 *.kate-swp
+cas-dc-template.pdf
+*.abs
