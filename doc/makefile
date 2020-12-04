@@ -1,4 +1,4 @@
-# $Id: makefile 5 2019-02-11 10:03:21Z rishi $
+# $Id: makefile 37 2020-02-25 09:06:02Z rishi $
 
 file=elsdoc-cas
 
@@ -34,7 +34,3 @@ diff:
 
 copy:
 	cp $(file).sty ../
-
-
-
-

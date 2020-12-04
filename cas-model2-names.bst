@@ -1,7 +1,7 @@
 %%
-%% This is file `model2-names.bst'  (Version 2.0),
+%% This is file `cas-model2-names.bst'  (Version 2.0),
 %% 
-%% Copyright 2009-2013 Elsevier Ltd
+%% Copyright 2009-2019 Elsevier Ltd
 %% 
 %% This file is part of the 'Elsarticle Bundle'.
 %% ---------------------------------------------
@@ -13,9 +13,9 @@
 %% and version 1.2 or later is part of all distributions of LaTeX
 %% version 1999/12/01 or later.
 %%
-%% $Id: model2-names.bst 217 2013-03-13 11:50:49Z rishi $
+%% $Id: cas-model2-names.bst 23 2019-04-05 10:17:39Z rishi $
 %%
-%% $URL: http://lenova.river-valley.com/svn/elsbst/trunk/New-Model-2/model2-names.bst $
+%% $URL: https://lenova.river-valley.com/svn/elscastemplates/trunk/cas-model2-names.bst $
 %% 
 
 ENTRY
