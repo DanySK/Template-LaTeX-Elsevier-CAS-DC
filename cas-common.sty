@@ -15,11 +15,11 @@
 %% given in the file `manifest.txt'.
 %% 
 
-% $Id: cas-common.sty 12 2019-03-19 06:03:53Z rishi $
+% $Id: cas-common.sty 49 2020-03-14 09:05:10Z rishi $
 
  \def\RCSfile{cas-common}%
- \def\RCSversion{1.0}%
- \def\RCSdate{2019/02/11}%
+ \def\RCSversion{2.1}%
+ \def\RCSdate{2020/03/14}%
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 
 \ExplSyntaxOn
@@ -31,6 +31,8 @@
 % written by CV Radhakrishnan <cvr@cvr.cc> and copyrighted by him.
 % Usage of those macros and methods are gratefully acknowledged.
 % 
+
+\tl_set:Nn \l_stm_title_color_tl { black }
 
 \keys_define:nn { stm / title }
    {
@@ -143,7 +145,7 @@
         \l_stm_title_shape_tl
         \l_stm_title_weight_tl
         \color { \l_stm_title_color_tl }
-        #2
+        \noindent \unskip \ignorespaces #2
         \tl_set:Nn \l_tmpa_tl { title }
         \tl_if_eq:NNTF \l_stm_title_type_tl \l_tmpa_tl
         { \processTmarks } { }
@@ -460,7 +462,7 @@
    { \int_set:Nn \l_tmpa_int { 0 }
      \clist_map_inline:nn { #1 }
       {
-%        \msg_term:n { ##1 .. [\cs:w X@##1:\cs_end:] }
+%        \iow_term:n { ##1 .. [\cs:w X@##1:\cs_end:] }
         \cs_if_free:cTF { X@##1: } 
           { \csdef{X@##1:}{0} }
           {
@@ -482,7 +484,7 @@
    {
      \tl_if_head_eq_catcode:nNTF { #1 } a
        {
-         \msg_term:n { [TNOTE:~alpha] }%
+%         \iow_term:n { [TNOTE:~alpha] }%
          \seq_gput_right:Nn \g_stm_tnote_seq
            { \int_incr:N \g_stm_tnote_int
              \str_set:Nx \@currentlabel { \int_use:N \g_stm_tnote_int }
@@ -499,7 +501,7 @@
             }
           }
         {
-          \msg_term:n { [TNOTE:~Number] }
+%          \iow_term:n { [TNOTE:~Number] }
           \seq_gput_right:Nn \g_stm_tnote_seq
           {
             \int_set:Nn \l_tmpa_int { #1 }
@@ -540,7 +542,7 @@
 {
   \tl_if_head_eq_catcode:nNTF { #1 } a
   {
-    \msg_term:n { [FN:~alpha] }%
+%    \iow_term:n { [FN:~alpha] }%
     \seq_gput_right:Nn \g_stm_fnote_seq
     { \int_incr:N \g_stm_fnote_int
       \str_set:Nx \@currentlabel { \int_use:N \g_stm_fnote_int }
@@ -550,7 +552,7 @@
     }
   }
   {
-    \msg_term:n { [FN:~Number] }
+%    \iow_term:n { [FN:~Number] }
     \seq_gput_right:Nn \g_stm_fnote_seq
     {
       \int_set:Nn \l_tmpa_int { #1 }
@@ -569,7 +571,7 @@
 {
   \tl_if_head_eq_catcode:nNTF { #1 } a
   {
-    \msg_term:n { [COR:~alpha] }%
+%    \iow_term:n { [COR:~alpha] }%
     \seq_gput_right:Nn \g_stm_cor_seq
     { \int_incr:N \g_stm_cor_int
       \str_set:Nx \@currentlabel { \int_use:N \g_stm_cor_int }
@@ -586,7 +588,7 @@
     }
   }
   {
-    \msg_term:n { [COR:~Number] }
+%    \iow_term:n { [COR:~Number] }
     \seq_gput_right:Nn \g_stm_cor_seq
     {
       \int_set:Nn \l_tmpa_int { #1 }
@@ -896,13 +898,13 @@
          \tl_if_empty:NF \l_stm_au_prefix
             { \l_stm_au_prefix_tl \c_space_token } 
          \str_if_eq:VnTF \l_stm_au_style_tl  { chinese }
-            { %\msg_term:n {STYLE~T=\l_stm_au_style_tl........}
+            { %\iow_term:n {STYLE~T=\l_stm_au_style_tl........}
               \invparsename { #2 } 
               \textcolor{\l_stm_augroup_color_tl}{\surname}
               \no_break_space:
               \textcolor{\l_stm_augroup_color_tl !50}{\firstname}
             }
-            { %\msg_term:n {STYLE~F=\l_stm_au_style_tl........}  
+            { %\iow_term:n {STYLE~F=\l_stm_au_style_tl........}  
               \parsename { #2 } 
               \textcolor{\l_stm_augroup_color_tl !50}{\firstname} 
               \no_break_space:
@@ -1215,7 +1217,7 @@
      \seq_new:c {g_stm_aff\int_use:N \g_stm_augr_int _seq}
      \seq_new:c {g_stm_collab\int_use:N \g_stm_augr_int _seq}
      \seq_new:c {g_stm_clau\int_use:N \g_stm_augr_int _seq}
-     \msg_term:n { AUGR:~\int_use:N \g_stm_augr_int ... }
+%     \iow_term:n { AUGR:~\int_use:N \g_stm_augr_int ... }
    } 
    {
      \seq_gput_right:Nn \g_stm_augr_seq
@@ -1247,7 +1249,7 @@
          \seq_use:cn { g_stm_aff\int_use:N \g_stm_aaugr_int _seq }
            { \par \smallskip }
          \par\vskip\l_stm_aff_after_dim
-         \msg_term:n { AAUGR:~\int_use:N \g_stm_aaugr_int ... }
+%         \iow_term:n { AAUGR:~\int_use:N \g_stm_aaugr_int ... }
          \group_end:
 %
          \group_begin:
@@ -1862,6 +1864,15 @@
   abovetbl  .skip_set:N  =  \l_tbl_abovetbl_skip ,
   belowtbl  .skip_set:N  =  \l_tbl_belowtbl_skip ,
   full      .bool_gset:N =  \g_tbl_full_bool ,
+  unknown   .code:n      = { 
+                              \ifstrempty { #1 } 
+                                 {
+                                   \tl_set:Nn \l_fig_pos_tl { \l_keys_key_tl }
+                                 } 
+                                 {
+                                   \l_keys_key_tl=#1
+                                 }  
+                           }  
 }
 
 \cs_set:Npn \__reset_tbl:
@@ -1938,6 +1949,15 @@
   abovefig  .skip_set:N  =  \l_fig_abovefig_skip ,
   belowfig  .skip_set:N  =  \l_fig_belowfig_skip ,
   full      .bool_gset:N =  \g_fig_full_bool ,
+  unknown   .code:n      = { 
+                              \ifstrempty { #1 } 
+                                 {
+                                   \tl_set:Nn \l_fig_pos_tl { \l_keys_key_tl }
+                                 } 
+                                 {
+                                   \l_keys_key_tl=#1,
+                                 }  
+                           }  
 }
 
 \cs_set:Npn \__reset_fig:

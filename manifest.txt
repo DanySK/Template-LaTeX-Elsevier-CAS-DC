@@ -1,4 +1,4 @@
-% Copyright 2019 Elsevier Ltd
+% Copyright 2019-2020 Elsevier Ltd
 %
 % This file is part of the 'CAS Bundle'.
 % --------------------------------------
@@ -62,12 +62,12 @@ Directory thumbnails/
 Contains thumbnail images which will be included in the
 typeset PDF.
 
- email.jpeg
- facebook.jpeg
- gplus.jpeg
- linkedin.jpeg
- twitter.jpeg
- url.jpeg
+ cas-email.jpeg
+ cas-facebook.jpeg
+ cas-gplus.jpeg
+ cas-linkedin.jpeg
+ cas-twitter.jpeg
+ cas-url.jpeg
 
 Directory figs/
 

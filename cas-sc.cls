@@ -15,11 +15,11 @@
 %% given in the file `manifest.txt'.
 %% 
 
-%% $Id: cas-sc.cls 7 2019-02-13 12:02:17Z apu.v $
+%% $Id: cas-sc.cls 49 2020-03-14 09:05:10Z rishi $
 
  \def\RCSfile{cas-sc}%
- \def\RCSversion{1.0}%
- \def\RCSdate{2018/09/22}%
+ \def\RCSversion{2.1}%
+ \def\RCSdate{2020/03/14}%
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesClass{\RCSfile}[\RCSdate, \RCSversion: Formatting class
    for CAS single column articles]
