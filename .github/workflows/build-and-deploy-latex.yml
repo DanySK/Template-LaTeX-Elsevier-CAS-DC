@@ -1,8 +1,6 @@
 name: Build LaTeX and deploy on GitHub Releases
 on:
   push:
-  schedule:
-    - cron: '0 0 1 * *'
 
 jobs:
   Build-LaTeX:
@@ -19,11 +17,11 @@ jobs:
         shell: bash
         run: git fetch --tags -f
       - name: Install TeXLive
-        uses: DanySK/setup-texlive-action@master
+        uses: DanySK/setup-texlive-action@0.1.1
       - name: Compile LaTeX
-        uses: DanySK/compile-latex-action@master
+        uses: DanySK/compile-latex-action@0.1.1
       - name: Autotag
-        uses: DanySK/semver-autotag-action@master
+        uses: DanySK/semver-autotag-action@0.1.0
       - name: Deploy
         if: ${{ startsWith(github.ref, 'refs/tags/') || github.ref == 'refs/heads/master' }}
         env:
