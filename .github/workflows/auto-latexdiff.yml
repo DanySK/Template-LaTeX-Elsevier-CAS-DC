@@ -17,9 +17,9 @@ jobs:
         shell: bash
         run: git fetch --tags -f
       - name: Compile differential documents
-        uses: DanySK/auto-latexdiff@master
+        uses: DanySK/auto-latexdiff@27.20210831.1518
       - name: Autotag
-        uses: DanySK/semver-autotag-action@master
+        uses: DanySK/semver-autotag-action@0.1.0
       - name: Deploy
         if: ${{ startsWith(github.ref, 'refs/tags/') || github.ref == 'refs/heads/master' }}
         env:
