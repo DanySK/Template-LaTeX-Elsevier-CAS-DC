@@ -1,11 +1,18 @@
 name: Build LaTeX and deploy on GitHub Releases
 on:
   push:
+    tags: '*'
+    branches-ignore:
+      - 'autodelivery**'
+      - 'bump-**'
+      - 'renovate/**'
     paths-ignore:
       - 'README.md'
       - 'CHANGELOG.md'
       - 'LICENSE'
       - 'renovate.json'
+  pull_request:
+  workflow_dispatch:
 
 jobs:
   Setup-Compile-Deploy:
