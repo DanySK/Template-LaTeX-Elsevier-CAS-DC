@@ -22,7 +22,7 @@ jobs:
         shell: bash
         run: git fetch --tags -f
       - name: Compile differential documents
-        uses: DanySK/auto-latexdiff@50.20211024.2224
+        uses: DanySK/auto-latexdiff@51.20211031.1815
       - name: Autotag
         uses: DanySK/semver-autotag-action@0.1.0
       - name: Deploy
