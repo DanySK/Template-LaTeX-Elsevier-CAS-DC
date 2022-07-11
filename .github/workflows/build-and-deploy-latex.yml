@@ -18,6 +18,6 @@ jobs:
   Setup-Compile-Deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: DanySK/compile-and-publish-all-latex@1.0.30
+      - uses: DanySK/compile-and-publish-all-latex@1.0.31
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
