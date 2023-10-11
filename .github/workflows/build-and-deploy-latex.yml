@@ -17,6 +17,8 @@ on:
 jobs:
   Setup-Compile-Deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: DanySK/compile-and-publish-all-latex@1.0.60
         with:
