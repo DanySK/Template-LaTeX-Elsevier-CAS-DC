@@ -20,6 +20,6 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: DanySK/compile-and-publish-all-latex@2.0.72
+      - uses: DanySK/compile-and-publish-all-latex@2.0.74
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
