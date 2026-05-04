@@ -15,11 +15,11 @@
 %% given in the file `manifest.txt'.
 %% 
 
-%% $Id: cas-dc.cls 49 2020-03-14 09:05:10Z rishi $
+%% $Id: cas-dc.cls 96 2024-05-04 09:29:44Z rishi $
 
  \def\RCSfile{cas-dc}%
- \def\RCSversion{2.1}%
- \def\RCSdate{2020/03/14}%
+ \def\RCSversion{2.4}%
+ \def\RCSdate{2024/05/04}%
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesClass{\RCSfile}[\RCSdate, \RCSversion: Formatting class
    for CAS double column articles]
@@ -48,7 +48,7 @@
 \DeclareOption{final}{\global\casfinallayouttrue}
 \DeclareOption{review}{\global\casreviewlayouttrue}
 
-\ExecuteOptions{a4paper,10pt,oneside,fleqn,review}
+\ExecuteOptions{a4paper,10pt,oneside,fleqn}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 \ProcessOptions
 \LoadClass{article}
@@ -63,6 +63,8 @@
 \RequirePackage{booktabs,makecell,multirow,array,colortbl,dcolumn,stfloats}
 \RequirePackage{xspace,xstring,footmisc}
 \RequirePackage[svgnames,dvipsnames]{xcolor}
+
+\ifbool{casreviewlayout}{\RequirePackage{setspace}}{}
 
 \RequirePackage[colorlinks]{hyperref}
 \colorlet{scolor}{black}
@@ -112,17 +114,26 @@
   \thispagestyle{first}    
   \ifbool{longmktitle}
   {
-    \LongMaketitleBox
+    \ifnum\theblind>0\relax
+      \LongMaketitleBox[Blind]
+    \else
+      \LongMaketitleBox
+    \fi
     \ProcessLongTitleBox
   }
   {
-    \twocolumn[\MaketitleBox]  
+    \ifnum\theblind>0\relax
+      \twocolumn[{\MaketitleBox[blind]}]
+    \else
+      \twocolumn[\MaketitleBox]  
+    \fi
     \printFirstPageNotes
   }
   \setcounter{footnote}{\int_use:N \g_stm_fnote_int}
   \renewcommand\thefootnote{\arabic{footnote}}
   \gdef\@pdfauthor{\infoauthors}
   \gdef\@pdfsubject{Complex ~STM ~Content}
+  \ifbool{casreviewlayout}{\doublespacing}{}  
 }
 
 %
@@ -170,6 +181,7 @@
 \endinput
   
 %
-% End of class 'cas-sc'
+% End of class 'cas-dc'
 %
+
 

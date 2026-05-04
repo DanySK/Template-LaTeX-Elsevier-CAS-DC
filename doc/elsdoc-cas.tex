@@ -1,22 +1,25 @@
 %% 
-%% Copyright 2019-2020 Elsevier Ltd
+%% Copyright 2019-2021 Elsevier Ltd
 %% 
 %% This file is part of the 'CAS Bundle'.
 %% ---------------------------------------------
 %% 
 %% It may be distributed under the conditions of the LaTeX Project Public
-%% License, either version 1.2 of this license or (at your option) any
+%% License, either version 1.3c of this license or (at your option) any
 %% later version.  The latest version of this license is in
 %%    http://www.latex-project.org/lppl.txt
-%% and version 1.2 or later is part of all distributions of LaTeX
+%% and version 1.3c or later is part of all distributions of LaTeX
 %% version 1999/12/01 or later.
 %% 
 %% The list of all files belonging to the 'CAS Bundle' is
 %% given in the file `manifest.txt'.
 %%
-%% $Id: elsdoc-cas.tex 35 2020-02-25 09:04:59Z rishi $
+%% $Id: elsdoc-cas.tex 76 2021-05-12 14:42:29Z rishi $
 %%
 \documentclass[a4paper,12pt]{article}
+
+\input{glyphtounicode}
+\pdfgentounicode=1
 
 \usepackage[xcolor,qtwo]{rvdtx}
 \usepackage{multicol}
@@ -77,35 +80,38 @@
 
 \pinclude{\copy\contbox\printSq{\LastPage}}
 
-\title{Documentation for Elsevier's Complex Article Service (CAS)
-\LaTeX\ template}
+\title{Documentation for Elsevier's CAS \LaTeX\ template}
 
 \author{Elsevier Ltd}
 \contact{elsarticle@stmdocs.in}
 
-\version{1.0}
+\version{2.3}
 \date{\today}
 \maketitle
 
 \section{Introduction}
-Two classfiles namely \file{cas-sc.cls} and \file{cas-dc.cls} were
-written for typesetting articles submitted in journals of Elsevier's
-Complex Article Service (CAS) workflow.
+This bundle provides two classfiles, namely \verb+cas-sc.cls+ and
+\verb+cas-dc.cls+  and corresponding template files for typesetting
+journal articles supposed to go through Elsevier's updated workflow.
+\verb+cas-sc.cls+ is meant for one-column, the other 
+\verb+cas-dc.cls+ for two-column layout. These are now accepted for
+submitting articles both in Elsevier's electronic submission system and
+elsewhere.
 
 \subsection{Usage}
 \begin{enumerate}
-\item \file{cas-sc.cls} for single column journals. 
+\item \verb+cas-sc.cls+ for single column journals. 
 
 \begin{vquote}
  \documentclass[<options>]{cas-sc}
 \end{vquote}
-\item \file{cas-dc.cls} for single column journals. 
+\item \verb+cas-dc.cls+ for single column journals. 
 
 \begin{vquote}
  \documentclass[<options>]{cas-dc}
 \end{vquote}
 \end{enumerate}
-and have an option longmktitle to handle long front matter. 
+and have an option \verb+longmktitle+ to handle long front matter. 
 
 \section{Front matter}
 
@@ -117,96 +123,107 @@ and have an option longmktitle to handle long front matter.
    project funded by the National Science Foundation.}
 
 \tnotetext[2]{The second title footnote which is a longer text 
-   matter to fill through the whole text width and overflow into
-   another line in the footnotes area of the first page.}
+   matter to fill through the whole text width and overflow 
+   into another line in the footnotes area of the first page.}
 
-\author[1,3]{CV Radhakrishnan}[type=editor,
-                        auid=000,bioid=1,
-                        prefix=Sir,
-                        role=Researcher,
-                        orcid=0000-0001-7511-2910]
-\cormark[1]
-\fnmark[1]
-\ead{cvr_1@tug.org.in}
-\ead[url]{www.cvr.cc, cvr@sayahna.org}
 \end{vquote}
 
 \begin{vquote}
 
-\credit{Conceptualization of this study, Methodology, 
-        Software}
+\author[1,3]{J.K. Krishnan}[type=editor,
+                        auid=000,bioid=1,
+                        prefix=Sir,
+                        role=Researcher,
+                        orcid=0000-0001-0000-0000]
+\cormark[1]
+\fnmark[1]
+\ead{jkk@example.in}
+\ead[url]{www.jkkrishnan.in}
 
-\address[1]{Elsevier B.V., Radarweg 29, 1043 NX Amsterdam, 
-            The Netherlands}
+\credit{Conceptualization of this study, 
+          Methodology, Software}
 
-\author[2,4]{Han Theh Thanh}[style=chinese]
+\affiliation[1]{organization={Department of Physics, 
+                  J.K. Institute of Science},
+                addressline={Jawahar Nagar}, 
+                city={Trivandrum},
+%               citysep={}, % Uncomment if no comma needed 
+%                               between city and postcode
+                postcode={695013}, 
+                state={Kerala},
+                country={India}}
 
-\author[2,3]{CV Rajagopal}[%
+\author[2,4]{Han Thane}[style=chinese]
+
+\author[2,3]{William {J. Hansen}}[%
    role=Co-ordinator,
    suffix=Jr,
    ]
 \fnmark[2]
-\ead{cvr3@sayahna.org}
-\ead[URL]{www.sayahna.org}
+\ead{wjh@example.org}
+\ead[URL]{https://www.university.org}
 
 \credit{Data curation, Writing - Original draft preparation}
 
-\address[2]{Sayahna Foundation, Jagathy, Trivandrum 695014, 
-            India}
-
-\author[1,3]{Rishi T.}
-\cormark[2]
-\fnmark[1,3]
-\ead{rishi@stmdocs.in}
-\ead[URL]{www.stmdocs.in}
-
-\address[3]{STM Document Engineering Pvt Ltd., Mepukada,
-    Malayinkil, Trivandrum 695571, India}
-
-\cortext[cor1]{Corresponding author}
-\cortext[cor2]{Principal corresponding author}
-\fntext[fn1]{This is the first author footnote. but is common 
-  to third author as well.}
-\fntext[fn2]{Another author footnote, this is a very long 
-  footnote and it should be a really long footnote. But this 
-  footnote is not yet sufficiently long enough to make two lines 
-  of footnote text.}
 \end{vquote}
 
 \begin{vquote}
+
+\affiliation[2]{organization={World Scientific University},
+                addressline={Street 29}, 
+                postcode={1011 NX}, 
+                postcodesep={}, 
+                city={Amsterdam},
+                country={The Netherlands}}
+
+\author[1,3]{T. Rafeeq}
+\cormark[2]
+\fnmark[1,3]
+\ead{t.rafeeq@example.in}
+\ead[URL]{www.campus.in}
+
+\affiliation[3]{organization={University of Intelligent 
+                    Studies},
+                addressline={Street 15}, 
+                city={Jabaldesh},
+                postcode={825001}, 
+                state={Orissa}, 
+                country={India}}
+
+\cortext[cor1]{Corresponding author}
+\cortext[cor2]{Principal corresponding author}
+\fntext[fn1]{This is the first author footnote, but is common 
+   to third author as well.}
+\fntext[fn2]{Another author footnote, this is a very long 
+  footnote and it should be a really long footnote. But this 
+  footnote is not yet sufficiently long enough to make two 
+  lines of footnote text.}
+
 \nonumnote{This note has no numbers. In this work we 
   demonstrate $a_b$ the formation Y\_1 of a new type of 
   polariton on the interface between a cuprous oxide slab 
   and a polystyrene micro-sphere placed on the slab.
   }
+\end{vquote}
+
+\begin{vquote}
 
 \begin{abstract}[S U M M A R Y]
 This template helps you to create a properly formatted 
  \LaTeX\ manuscript.
 
-\noindent\texttt{\textbackslash begin{abstract}} \dots 
-\texttt{\textbackslash end{abstract}} and
-\verb+\begin{keyword}+ \verb+...+ \verb+\end{keyword}+ 
-which contain the abstract and keywords respectively. 
-Each keyword shall be separated by a \verb+\sep+ command.
+\begin{abstract} ... \end{abstract} and \begin{keyword} 
+... \end{keyword} which contain the abstract and keywords 
+respectively.  Each keyword shall be separated by 
+a \sep command.
 \end{abstract}
 
 \begin{keywords}
-quadrupole exciton \sep polariton \sep \WGM \sep \BEC
+quadrupole exciton \sep polariton \sep WGM \sep BEC
 \end{keywords}
 
 \maketitle
 \end{vquote}
-
-\begin{figure}
-\includegraphics[width=\textwidth]{sc-sample.pdf}
-\caption{Single column output (classfile: cas-sc.cls).}
-\end{figure}
-
-\begin{figure}
-\includegraphics[width=\textwidth]{dc-sample.pdf}
-\caption{Double column output (classfile: cas-dc.cls).}
-\end{figure}
 
 \subsection{Title}
 
@@ -235,8 +252,8 @@ quadrupole exciton \sep polariton \sep \WGM \sep \BEC
 \item \verb+auid:+ Author id
 \item \verb+bioid:+ Biography id
 \item \verb+alt:+ Alternate author
-\item \verb+style:+ Style of author name chinese
-\item \verb+prefix:+ Prefix Sir
+\item \verb+style:+ Style of author name, eg.\ chinese
+\item \verb+prefix:+ Prefix, eg.\ Sir
 \item \verb+suffix:+ Suffix
 \item \verb+degree:+ Degree
 \item \verb+role:+ Role
@@ -256,12 +273,22 @@ quadrupole exciton \sep polariton \sep \WGM \sep \BEC
     auid=000,bioid=1,
     prefix=Sir,
     role=Researcher,
-    orcid=0000-0001-7511-2910,
+    orcid=0000-0001-0000-0000,
     facebook=<facebook id>,
     twitter=<twitter id>,
     linkedin=<linkedin id>,
     gplus=<gplus id>]
 \end{vquote}
+
+\begin{figure}
+\includegraphics[width=\textwidth]{sc-sample.pdf}
+\caption{Single column output (classfile: cas-sc.cls).}
+\end{figure}
+
+\begin{figure}
+\includegraphics[width=\textwidth]{dc-sample.pdf}
+\caption{Double column output (classfile: cas-dc.cls).}
+\end{figure}
 
 \subsection{Various Marks in the Front Matter}
 
@@ -269,7 +296,7 @@ The front matter becomes complicated due to various kinds
 of notes and marks to the title and author names. Marks in
 the title will be denoted by a star ($\star$) mark;
 footnotes are denoted by super scripted Arabic numerals,
-corresponding author by of an Conformal asterisk (*) mark.
+corresponding author by an Conformal asterisk (*) mark.
 
 \subsubsection{Title marks}
 
@@ -292,8 +319,8 @@ and the corresponding text can be entered with the command
    the first page.}
 \end{vquote}
 
-\verb+\tnotetext+ and \verb+\tnotemark+ can be anywhere in
-the front matter, but shall be before \verb+\maketitle+ command.
+\verb+\tnotemark+ and \verb+\tnotetext+ can be anywhere in
+the front matter, but should be before \verb+\maketitle+ command.
 
 \subsubsection{Author marks}
 
@@ -326,10 +353,10 @@ command for this to take effect.
 \subsection{Abstract and Keywords}
 
 Abstract shall be entered in an environment that starts
-with \verb+\begin{abstract}+ and ends with
+with\break \verb+\begin{abstract}+ and ends with
 \verb+\end{abstract}+. Longer abstracts spanning more than
-one page is also possible in Class file even in double
-column mode. We need to invoke longmktitle option in the
+one page is also possible in slass file even in double
+column mode. We need to invoke \verb+longmktitle+ option in the
 class loading line for this to happen smoothly.
 
 The key words are enclosed in a \verb+{keyword}+
@@ -337,7 +364,7 @@ environment.
 
 \begin{vquote}
 \begin{abstract}
- This is a abstract. \lipsum[3]
+ This is an abstract. \lipsum[3]
 \end{abstract}
 
 \begin{keywords}
@@ -347,6 +374,8 @@ environment.
 \end{vquote}
 
 \section{Main Matter}
+Main matter contains sections, paragraphs, equations and floats like
+tables, figures, textboxes etc.
 \subsection{Tables}
 \subsubsection{Normal tables}
 
@@ -357,6 +386,9 @@ environment.
    \toprule
     Col 1 & Col 2\\
    \midrule
+    12345 & 12345\\
+    12345 & 12345\\
+    12345 & 12345\\
     12345 & 12345\\
     12345 & 12345\\
     12345 & 12345\\
@@ -377,6 +409,10 @@ environment.
     12345 & 12345 & 123 & 12345 & 123 & 12345 & 123 \\
     12345 & 12345 & 123 & 12345 & 123 & 12345 & 123 \\
     12345 & 12345 & 123 & 12345 & 123 & 12345 & 123 \\
+    12345 & 12345 & 123 & 12345 & 123 & 12345 & 123 \\
+    12345 & 12345 & 123 & 12345 & 123 & 12345 & 123 \\
+    12345 & 12345 & 123 & 12345 & 123 & 12345 & 123 \\
+    12345 & 12345 & 123 & 12345 & 123 & 12345 & 123 \\
    \bottomrule
   \end{tabular*}
 \end{table*}
@@ -388,11 +424,8 @@ environment.
 \begin{figure}
 	\centering
 		\includegraphics[scale=.75]{Fig1.pdf}
-	\caption{The evanescent light - $1S$ quadrupole coupling
-	($g_{1,l}$) scaled to the bulk exciton-photon coupling
-	($g_{1,2}$). The size parameter $kr_{0}$ is denoted as $x$ and
-	the \PMS is placed directly on the cuprous oxide sample ($\delta
-	r=0$, See also Fig. \protect\ref{FIG:2}).}
+	\caption{The evanescent light - $1S$ quadrupole coupling. 
+   See also Fig. \protect\ref{FIG:2}).}
 	\label{FIG:1}
 \end{figure}
 \end{vquote}
@@ -404,9 +437,7 @@ environment.
 	\centering
 	  \includegraphics[width=\textwidth,height=2in]{Fig2.pdf}
 	\caption{Schematic of formation of the evanescent polariton on
-	linear chain of \PMS. The actual dispersion is determined by 
-  the ratio of two coupling parameters such as exciton-\WGM 
-  coupling and \WGM-\WGM coupling between the microspheres.}
+	linear chain of \PMS.}
   \label{FIG:2}
 \end{figure*}\end{vquote}
 
@@ -545,34 +576,42 @@ Give the authorship contribution after each author as
 To print the details use \verb+\printcredits+ 
 
 \begin{vquote}
- \author[1,3]{V. {{\=A}}nand Rawat}[auid=000,
-                   bioid=1,
-                   prefix=Sir,
-                   role=Researcher,
-                   orcid=0000-0001-7511-2910]
+\author[1,3]{J.K. Krishnan}[type=editor,
+                        auid=000,bioid=1,
+                        prefix=Sir,
+                        role=Researcher,
+                        orcid=0000-0001-0000-0000]
 \end{vquote}
 
 \begin{vquote}
-  \cormark[1]
-  \fnmark[1]
-  \ead{cvr_1@tug.org.in}
-  \ead[url]{www.cvr.cc, www.tug.org.in}
+\cormark[1]
+\fnmark[1]
+\ead{jkk@example.in}
+\ead[url]{www.jkkrishnan.in}
 
-  \credit{Conceptualization of this study, Methodology, 
-          Software}
+\credit{Conceptualization of this study, Methodology, Software}
 
-  \address[1]{Indian \TeX{} Users Group, Trivandrum 695014, 
-       India}
+\affiliation[1]{organization={Department of Physics, 
+                      J.K. Institute of Science},
+                addressline={Jawahar Nagar}, 
+                city={Trivandrum},
+%               citysep={}, % Uncomment if no comma needed 
+%                           between city and postcode
+                postcode={695013}, 
+                state={Kerala},
+                country={India}}
 
-  \author[2,4]{Han Theh Thanh}[style=chinese]
+\author[2,4]{Han Thane}[style=chinese]
 
-  \author[2,3]{T. Rishi Nair}[role=Co-ordinator,
-                   suffix=Jr]
-  \fnmark[2]
-  \ead{rishi@sayahna.org}
-  \ead[URL]{www.sayahna.org}
+\author[2,3]{William {J. Hansen}}[%
+   role=Co-ordinator,
+   suffix=Jr,
+   ]
+\fnmark[2]
+\ead{wjh@example.org}
+\ead[URL]{https://www.university.org}
 
-  \credit{Data curation, Writing - Original draft preparation}
+\credit{Data curation, Writing - Original draft preparation}
 
   . . .
   . . .
@@ -583,7 +622,7 @@ To print the details use \verb+\printcredits+
 \section{Bibliography}
 
 For CAS categories, two reference models are recommended.
-They are \file{model1-num-names.bst} and \file{model2-names.bst}.
+They are \file{model1-num-names.bst} and \file{cas-model2-names.bst}.
 Former will format the reference list and their citations according to
 numbered scheme whereas the latter will format according name-date or
 author-year style. Authors are requested to choose any one of these
