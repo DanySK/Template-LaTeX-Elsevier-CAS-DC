@@ -5,21 +5,21 @@
 %% ......................................
 %% 
 %% It may be distributed under the conditions of the LaTeX Project Public
-%% License, either version 1.2 of this license or (at your option) any
+%% License, either version 1.3c of this license or (at your option) any
 %% later version.  The latest version of this license is in
 %%    http://www.latex-project.org/lppl.txt
-%% and version 1.2 or later is part of all distributions of LaTeX
+%% and version 1.3c or later is part of all distributions of LaTeX
 %% version 1999/12/01 or later.
 %% 
 %% The list of all files belonging to the 'CAS Bundle' is
 %% given in the file `manifest.txt'.
 %% 
 
-%% $Id: cas-sc.cls 49 2020-03-14 09:05:10Z rishi $
+%% $Id: cas-sc.cls 96 2024-05-04 09:29:44Z rishi $
 
  \def\RCSfile{cas-sc}%
- \def\RCSversion{2.1}%
- \def\RCSdate{2020/03/14}%
+ \def\RCSversion{2.4}%
+ \def\RCSdate{2024/05/04}%
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesClass{\RCSfile}[\RCSdate, \RCSversion: Formatting class
    for CAS single column articles]
@@ -48,7 +48,7 @@
 \DeclareOption{final}{\global\casfinallayouttrue}
 \DeclareOption{review}{\global\casreviewlayouttrue}
 
-\ExecuteOptions{a4paper,10pt,oneside,fleqn,review}
+\ExecuteOptions{a4paper,10pt,oneside,fleqn}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 \ProcessOptions
 \LoadClass{article}
@@ -63,6 +63,8 @@
 \RequirePackage{booktabs,makecell,multirow,array,colortbl,dcolumn,stfloats}
 \RequirePackage{xspace,xstring,footmisc}
 \RequirePackage[svgnames,dvipsnames]{xcolor}
+
+\ifbool{casreviewlayout}{\RequirePackage{setspace}}{}
 
 \RequirePackage[colorlinks]{hyperref}
 \colorlet{scolor}{black}
@@ -113,11 +115,19 @@
   \thispagestyle{first}
   \ifbool{longmktitle}
   {
-    \LongMaketitleBox
+    \ifnum\theblind>0\relax
+        \LongMaketitleBox[blind]
+    \else
+		\LongMaketitleBox
+    \fi
     \ProcessLongTitleBox
   }
   {
-    \MaketitleBox
+    \ifnum\theblind>0\relax
+        \MaketitleBox[blind]
+    \else
+		\MaketitleBox
+    \fi
     \printFirstPageNotes
   }
   \normalcolor \normalfont
@@ -125,6 +135,7 @@
   \renewcommand\thefootnote{\arabic{footnote}}
   \gdef\@pdfauthor{\infoauthors}
   \gdef\@pdfsubject{Complex ~STM ~Content}
+  \ifbool{casreviewlayout}{\doublespacing}{}
 }
 
 %
@@ -152,7 +163,6 @@
 { \RequirePackage[scaled=.85]{inconsolata} }
 { \tex_gdef:D \ttdefault { cmtt } }
 
-
 \ExplSyntaxOff
 
 %
@@ -175,4 +185,5 @@
 %
 % End of class 'cas-sc'
 %
+
 

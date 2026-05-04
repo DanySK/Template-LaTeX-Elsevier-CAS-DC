@@ -5,22 +5,35 @@
 %% ......................................
 %% 
 %% It may be distributed under the conditions of the LaTeX Project Public
-%% License, either version 1.2 of this license or (at your option) any
+%% License, either version 1.3c of this license or (at your option) any
 %% later version.  The latest version of this license is in
 %%    http://www.latex-project.org/lppl.txt
-%% and version 1.2 or later is part of all distributions of LaTeX
+%% and version 1.3c or later is part of all distributions of LaTeX
 %% version 1999/12/01 or later.
 %% 
 %% The list of all files belonging to the 'CAS Bundle' is
 %% given in the file `manifest.txt'.
 %% 
 
-% $Id: cas-common.sty 49 2020-03-14 09:05:10Z rishi $
+% $Id: cas-common.sty 94 2024-05-04 09:27:09Z rishi $
 
  \def\RCSfile{cas-common}%
- \def\RCSversion{2.1}%
- \def\RCSdate{2020/03/14}%
+ \def\RCSversion{2.4}%
+ \def\RCSdate{2024/05/04}%
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
+
+\pretolerance=-1
+\tolerance=1000
+\hyphenpenalty=1000
+\exhyphenpenalty=100
+\brokenpenalty=10000
+\vfuzz=\z@
+\hfuzz=.2pt
+\doublehyphendemerits=100
+\emergencystretch=2pt
+\frenchspacing
+\clubpenalty=10000
+\widowpenalty=10000
 
 \ExplSyntaxOn
 \makeatletter
@@ -446,7 +459,11 @@
   \seq_if_empty:NF \g_stm_credits_seq
   {
     \section*{CRediT ~authorship ~contribution ~statement}
-    \seq_use:Nn \g_stm_credits_seq { .~ }.
+    \ifnum\theblind>0\relax
+        \vspace*{10mm}
+    \else
+		\seq_use:Nn \g_stm_credits_seq { .~ }.
+    \fi
   }
 }
 
@@ -1040,6 +1057,120 @@
 \NewDocumentCommand \fax   { m } { #1 }
 \NewDocumentCommand \aurl  { m } { #1 }
 
+\def\ca_affitem_postskip{\mbox{~}\unskip\ignorespaces}
+%%Author Address
+\DeclareDocumentCommand \ca_organization { O{,} m }
+  {
+%    #2 #1\mbox{~}\unskip\ignorespaces
+    \csgappto { ca_affiliation_values } { #2 #1\ca_affitem_postskip }
+  }
+\DeclareDocumentCommand \ca_postal_code { O{,} m }
+  {
+%    #2 #1\mbox{~}\unskip\ignorespaces
+    \csgappto { ca_affiliation_values } { #2 #1\ca_affitem_postskip }
+  }
+\DeclareDocumentCommand \ca_aff_city { O{,}  m }
+  {   
+%    #2 #1\mbox{~}\unskip\ignorespaces
+    \csgappto { ca_affiliation_values } { #2 #1\ca_affitem_postskip }
+  }
+\DeclareDocumentCommand \ca_address_line { O{,}m }
+  {
+%    #2 #1\mbox{~}\unskip\ignorespaces
+    \csgappto { ca_affiliation_values } { #2 #1\ca_affitem_postskip }
+  }
+\DeclareDocumentCommand \ca_state { O{,} m }
+  {
+%    #2 #1\mbox{~}\unskip\ignorespaces
+    \csgappto { ca_affiliation_values } { #2 #1\ca_affitem_postskip }
+  }
+\DeclareDocumentCommand \ca_country { O{ } m }
+  {
+%    #2 #1
+    \csgappto { ca_affiliation_values } { #2 #1 }
+  }
+  
+\DeclareDocumentCommand \ca_stm_organization { O{,} m }
+  {
+    #2 #1\ca_affitem_postskip
+  }
+\DeclareDocumentCommand \ca_stm_postal_code { O{,} m }
+  {
+    #2 #1\ca_affitem_postskip
+  }
+\DeclareDocumentCommand \ca_stm_aff_city { O{,}  m }
+  {   
+    #2 #1\ca_affitem_postskip
+  }
+\DeclareDocumentCommand \ca_stm_aff_address_line { O{,}m }
+  {
+    #2 #1\ca_affitem_postskip
+  }
+\DeclareDocumentCommand \ca_stm_state { O{,} m }
+  {
+    #2 #1\ca_affitem_postskip
+  }
+\DeclareDocumentCommand \ca_stm_country { O{ } m }
+  {
+    #2 #1
+  }
+
+\keys_define:nn { stm / affiliation }
+  {
+    op   .tl_set_x:N   = \l_organization_punc_tl,  
+    oraganizationsep   .tl_set_x:N   = \l_organization_punc_tl,      
+    ap   .tl_set_x:N   = \l_address_line_punc_tl,
+    addresslinesep   .tl_set_x:N   = \l_address_line_punc_tl,    
+    cp   .tl_set_x:N   = \l_city_punc_tl,
+    citysep   .tl_set_x:N   = \l_city_punc_tl,    
+    pp   .tl_set_x:N   = \l_postal_code_punc_tl,
+    postcodesep   .tl_set_x:N   = \l_postal_code_punc_tl,    
+    sp   .tl_set_x:N   = \l_state_punc_tl,
+    statesep   .tl_set_x:N   = \l_state_punc_tl,    
+    o    .code:n       = { \ca_organization[\l_organization_punc_tl]{#1} },
+    organization    .code:n       = { \ca_organization[\l_organization_punc_tl]{#1} },    
+    a    .code:n       = { \ca_address_line[\l_address_line_punc_tl]{#1} },
+    addressline    .code:n       = { \ca_address_line[\l_address_line_punc_tl]{#1} },    
+    c    .code:n       = { \ca_aff_city[\l_city_punc_tl]{#1} },
+    city .code:n       = { \ca_aff_city[\l_city_punc_tl]{#1} },    
+    p    .code:n       = { \ca_postal_code[\l_postal_code_punc_tl]{#1} },
+    postcode    .code:n       = { \ca_postal_code[\l_postal_code_punc_tl]{#1} },    
+    s    .code:n       = { \ca_state[\l_state_punc_tl]{#1} },
+    state    .code:n       = { \ca_state[\l_state_punc_tl]{#1} },    
+    orp  .tl_set_x:N   = \l_organization_punc_tl,
+    adp  .tl_set_x:N   = \l_address_line_punc_tl,
+    cip  .tl_set_x:N   = \l_city_punc_tl,
+    pcp  .tl_set_x:N   = \l_postal_code_punc_tl,
+    stp  .tl_set_x:N   = \l_state_punc_tl,
+    cyp  .tl_set_x:N   = \l_country_punc_tl,
+    or   .code:n       = { \ca_organization[\l_organization_punc_tl]{#1} },
+    ad   .code:n       = { \ca_address_line[\l_address_line_punc_tl]{#1} },
+    ci   .code:n       = { \ca_aff_city[\l_city_punc_tl]{#1} },
+    pc   .code:n       = { \ca_postal_code[\l_postal_code_punc_tl]{#1} },
+    st   .code:n       = { \ca_state[\l_state_punc_tl]{#1} },
+    cy   .code:n       = { \ca_country[\l_country_punc_tl]{#1} },
+    country   .code:n  = { \ca_country[\l_country_punc_tl]{#1} },    
+    unknown   .code:n  = {
+                           \ifstrempty { #1 } {
+                                \csxappto { ca_affiliation_values }
+                                     { {\l_keys_key_tl}~ } 
+                              } {
+                                \csxappto { ca_affiliation_values }
+                                     { {#1}~ }
+                              }
+                         }
+  }   
+
+\cs_set:Npn \__reset_affiliation:
+{
+  \tl_gset:Nn \l_organization_punc_tl { , }
+  \tl_gset:Nn \l_address_line_punc_tl { , }
+  \tl_gset:Nn \l_city_punc_tl { , }
+  \tl_gset:Nn \l_postal_code_punc_tl { , }
+  \tl_gset:Nn \l_state_punc_tl { , }
+  \tl_gset:Nn \l_country_punc_tl { }
+}
+
 \seq_new:c { g_stm_aff0_seq }
 \int_new:N \g_stm_aff_int
 \tl_new:N \l_addrtype_tl
@@ -1114,10 +1245,56 @@
      }
    }
  }
+ 
+\int_new:N \g_stm_aff_ext_int 
+\int_new:N \g_stm_aff_int_int 
+
+\NewDocumentCommand \affiliation { O{} m O{} }
+   {   
+    \__reset_affiliation:
+    \csgdef { ca_affiliation_values } { }   
+    \IfNoValueTF { #2 }
+      { }
+      {
+       \keys_set:nn { stm / affiliation } { #2 }
+      }
+     \int_gincr:N \g_stm_aff_ext_int 
+     \csxdef{ca_affiliation_\int_use:N \g_stm_aff_ext_int}{\csuse { ca_affiliation_values }} 
+     \__reset_addr:
+     \keys_set:nn { stm / address } { #3 }
+     \bool_if:NTF \g_stm_addr_foot_bool
+     { \__foot_affiliation:nnn [#1]{#2}[#3] }
+     {
+       \seq_gput_right:cn { g_stm_aff\int_use:N \g_stm_augr_int _seq }
+       { \int_gincr:N \g_stm_aff_int_int 
+         \tl_if_blank:nTF { #1 }
+         {
+           \tex_xdef:D \thefootnote{}
+           { \csuse { ca_affiliation_\int_use:N \g_stm_aff_int_int } }
+         }
+         { 
+           \tl_if_head_eq_catcode:nNTF { #1 } a
+           {
+             \int_gincr:N \g_stm_aff_int
+             \tex_xdef:D \@currentlabel 
+             { \int_to_alph:n { \int_use:N \g_stm_aff_int } }
+             \stmLabel {#1}
+             \textsuperscript{\itshape\@currentlabel} { \csuse { ca_affiliation_\int_use:N \g_stm_aff_int_int } } 
+           }
+           {
+             \int_gset:Nn \g_stm_aff_int { #1 }
+             \tex_xdef:D \@currentlabel 
+             { \int_to_alph:n {  \int_use:N \g_stm_aff_int } }
+             \textsuperscript{\itshape\@currentlabel} { \csuse { ca_affiliation_\int_use:N \g_stm_aff_int_int } }
+           }
+        }
+      }
+    }
+}  
 
 \cs_new:Npn \__foot_address:nnn [#1]#2[#3]
 {
-  \keys_set:nn { stm / address } { #3 }
+  \keys_set:nn { stm / address } { #3 }  
   \seq_gput_right:cn { g_stm_aff_foot_seq }
   {
     \tl_if_empty:nTF { #1 }
@@ -1148,6 +1325,54 @@
     }
   }
 }
+
+\int_new:N \g_stm_fn_aff_ext_int
+\int_new:N \g_stm_fn_aff_int_int
+\cs_new:Npn \__foot_affiliation:nnn [#1]#2[#3]
+{
+  \__reset_affiliation:
+  \csgdef { ca_affiliation_values } { }   
+  \IfNoValueTF { #2 }
+    { }
+    {
+     \keys_set:nn { stm / affiliation } { #2 }
+    }
+  \int_gincr:N \g_stm_aff_ext_int 
+  \csxdef{ca_affiliation_\int_use:N \g_stm_fn_aff_ext_int}{\csuse { ca_affiliation_values }}     
+  \keys_set:nn { stm / address } { #3 }
+  \seq_gput_right:cn { g_stm_aff_foot_seq }
+  {
+    \int_gincr:N \g_stm_aff_int_int
+    \tl_if_empty:nTF { #1 }
+    {
+      \tl_if_empty:NTF \l_stm_addr_type_tl
+      { \footnotetext{\csuse { ca_affiliation_\int_use:N \g_stm_fn_aff_int_int }} }
+      {
+        \footnotetext{\textit{\l_stm_addr_type_tl}:
+          \c_space_token \csuse { ca_affiliation_\int_use:N \g_stm_fn_aff_int_int } }
+      }
+    }
+    {
+      \tl_if_head_eq_catcode:nNTF { #1 } a
+      % 
+      {
+        \tex_def:D \thefootnote{\itshape\@currentlabel}
+        \tl_if_empty:NTF \l_stm_addr_type_tl
+        { \footnotetext{\csuse { ca_affiliation_\int_use:N \g_stm_fn_aff_int_int }} }
+        { \footnotetext{\textit{\l_stm_addr_type_tl}: \c_space_token 
+          \csuse { ca_affiliation_\int_use:N \g_stm_fn_aff_int_int }} }
+      }
+      {
+        \tex_def:D \thefootnote { \itshape\int_to_alph:n { #1 } }
+        \tl_if_empty:NTF \l_stm_addr_type_tl
+        { \footnotetext{\csuse { ca_affiliation_\int_use:N \g_stm_fn_aff_int_int }} }
+        { \footnotetext{\textit{\l_stm_addr_type_tl}:
+            \c_space_token \csuse { ca_affiliation_\int_use:N \g_stm_fn_aff_int_int } } }
+      }
+    }
+  }
+}
+
  
 \keys_define:nn { stm / affsetup }
    {
@@ -1309,7 +1534,11 @@
    \vskip12pt
    { \fontsize{12pt}{14pt}\bfseries\selectfont\casprelimstitle } \par
    \vskip6pt
-   \seq_use:Nn \g_stm_prelimsau_seq { , }
+   \ifnum\theblind>0\relax
+     \vspace*{\the\baselineskip}
+   \else  
+     \seq_use:Nn \g_stm_prelimsau_seq { ,~ }
+   \fi  
    \vskip12pt
    \par 
   } 
@@ -1555,8 +1784,11 @@
   \normalfont \normalsize 
 }
 
-\NewDocumentCommand \MaketitleBox { }
+\NewDocumentCommand \MaketitleBox { O{} }
 {
+  \tl_if_blank:nTF { #1 } { }
+  { \keys_set:nn { stm / mktitle } { #1 } }
+  \processbreakafter 
   \tex_def:D \baselinestretch{1}
   \group_begin:
   \@title
@@ -1590,8 +1822,10 @@
 \cs_set:Npn \__fn_text:n #1
 { \group_begin:\vbox_top:n { \footnotesize #1 } \group_end:\par}
 
-\NewDocumentCommand \LongMaketitleBox { }
+\NewDocumentCommand \LongMaketitleBox { O{} }
 {
+  \tl_if_blank:nTF { #1 } { }
+  { \keys_set:nn { stm / mktitle } { #1 } }
   \vbox_gset:Nn \g_stm_front_box
   {
     \tex_def:D \baselinestretch{1}
@@ -1599,11 +1833,14 @@
     \@title
     \group_end: 
     % 
-    \group_begin:
-    \normalsize \stmauthors \par
-    \stmcollab \par
-    \footnotesize \itshape \stmaddress \par
-    \group_end:
+    \bool_if:NTF \g_stm_blind_bool 
+     { \vspace* { 10 mm } }    
+     { \group_begin:
+       \normalsize \stmauthors \par
+       \stmcollab \par
+       \footnotesize \itshape \stmaddress \par
+       \group_end:
+     }
   % 
   \dashrule{0pt}{3pt}
   \begin{Abstract}
@@ -1744,7 +1981,11 @@
 {
   \group_begin:
   \small
-  \sffamily \__short_authors: :~
+  \sffamily
+  \ifnum\theblind>0\relax
+  \else 
+	\__short_authors: :~
+  \fi
   { \rmfamily \itshape Preprint~ submitted ~to ~Elsevier }
   \group_end:
 }
@@ -1824,7 +2065,7 @@
 \renewcommand\dbltopfraction{.9}
 \renewcommand\dblfloatpagefraction{.95}
 \newdimen \FullWidth
-\FullWidth=\textwidth
+\ABD{\FullWidth=\textwidth}
 
 \newcolumntype{L}{@{\extracolsep{\fill}}l}
 \newcolumntype{R}{@{\extracolsep{\fill}}r}
@@ -1927,14 +2168,25 @@
 \dim_new:N \l_fig_width_dim
 \dim_set:Nn \l_fig_width_dim { \linewidth }
 
+\newbox\cascaptionbox
+
 \cs_new:Npn \__make_fig_caption:nn #1#2
 {
   \l_fig_align_tl
   \skip_vertical:N \l_fig_abovecap_skip 
 %  \bool_if:NTF \g_fig_full_bool
 %  { \skip_horizontal:n { -\FullWidth } } { }
-  \parbox{ \l_fig_width_dim }
-   {\rightskip=0pt\sffamily\small\textbf{\color{scolor}#1:}~#2\par }
+  \setbox\cascaptionbox=\hbox{%
+     \sffamily\small\textbf{\color{scolor}#1:}~#2}
+  \ifdim\the\wd\cascaptionbox<\dim_use:N \l_fig_width_dim\relax
+  	\parbox{ \l_fig_width_dim }
+   		{\unskip\ignorespaces\hfil\sffamily\small
+       \textbf{\color{scolor}#1:}~#2\hfil\par }  
+  \else
+  	\parbox{ \l_fig_width_dim }
+   		{\rightskip=0pt\unskip\ignorespaces\sffamily
+       \small\textbf{\color{scolor}#1:}~#2\par }
+  \fi
   \skip_vertical:N \l_fig_belowcap_skip
 }
 
@@ -2145,6 +2397,14 @@
 \newbool { cas_no_pic_bio }
 \boolfalse { cas_no_pic_bio }
 
+\ifnum\theblind>0\relax
+\newbox\hidebiobox
+\NewDocumentCommand \bio { O{} m }
+  {\setbox\hidebiobox=\vbox\bgroup}
+\NewDocumentCommand \endbio { } {
+  \egroup
+}  
+\else
 \NewDocumentCommand \bio { O{} m }
 {
   \global \boolfalse { cas_no_pic_bio }
@@ -2174,6 +2434,7 @@
 \mbox{}\vspace*{-4.5pt}\noindent        
 \unvbox \l_bio_text_box }
 }
+\fi
 
 \let\casbiographyfont\relax
 
@@ -2367,7 +2628,7 @@
 
 \xspaceaddexceptions{]}
 
-\ABD{\bibsep=0pt}
+\ABD{\@ifundefined{bibsep}{}{\bibsep=0pt}}
 %\ifbool{casfinallayout}
 %  {%
    \ABD{\gdef\bibfont{\fontsize{8pt}{10pt}\selectfont}%
@@ -2377,3 +2638,4 @@
 %  {}
 
 \endinput
+
